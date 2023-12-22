@@ -10,4 +10,5 @@ lazy val root = (project in file("."))
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.17" % Test,
   "org.scalatest" %% "scalatest-funsuite" % "3.2.17" % Test,
+  "org.scala-lang" % "scala-compiler" % "2.13.10"
 )

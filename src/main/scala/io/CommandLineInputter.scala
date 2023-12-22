@@ -1,5 +1,11 @@
 package io
 
+import scala.io.StdIn.readLine
+
 class CommandLineInputter {
-  val test = "hello, scala"
+  def scanner(): String = {
+    val userInputValue: String = readLine();
+
+    return userInputValue
+  }
 }

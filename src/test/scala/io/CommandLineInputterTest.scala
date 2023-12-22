@@ -4,9 +4,9 @@ import org.scalatest.funsuite.AnyFunSuiteLike
 
 class CommandLineInputterTest extends AnyFunSuiteLike {
 
-  test("단위테스트 잘 도는지 확인") {
+  test("유저가 입력한 값을 그대로 반환한다..") {
     val inputter = new CommandLineInputter()
-    assert(inputter.test == "hello, scala")
-  }
 
+    inputter.scanner()
+  }
 }
