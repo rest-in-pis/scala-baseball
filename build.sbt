@@ -6,3 +6,8 @@ lazy val root = (project in file("."))
   .settings(
     name := "scala-baseball"
   )
+
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest" % "3.2.17" % Test,
+  "org.scalatest" %% "scalatest-funsuite" % "3.2.17" % Test,
+)
