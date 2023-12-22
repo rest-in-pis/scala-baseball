@@ -1,2 +1,0 @@
-# scala-baseball
-# scala-baseball
