@@ -20,4 +20,14 @@ class UserInputTest extends AnyFunSuiteLike {
 
     assert(exception.getMessage.contains("값을 반드시 입력해야 합니다."))
   }
+
+  test("유저입력값은 빈 문자열일 수 없다.") {
+    val invalidValue = "       "
+
+    val exception = intercept[IllegalArgumentException] {
+      new UserInput(invalidValue)
+    }
+
+    assert(exception.getMessage.contains("빈 문자열을 입력할 수 없습니다."))
+  }
 }
