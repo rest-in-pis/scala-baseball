@@ -11,7 +11,7 @@ class UserInputs(val value: String) {
   require(value.distinct.length == value.length, "중복된 숫자가 없어야 합니다.")
   require(!value.contains(VAN_NUMBER), "0은 포함 될 수 없습니다.")
 
-  private val numbers: List[String => UserInput] = value.map(_ => new UserInput(_)).toList
+  private val numbers: List[UserInput] = value.map(it => new UserInput(it.toString)).toList
 
-  def firstValue: String = numbers.head
+  def firstValue: UserInput = numbers.head
 }
