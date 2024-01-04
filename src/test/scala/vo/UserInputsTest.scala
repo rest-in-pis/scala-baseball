@@ -61,5 +61,10 @@ class UserInputsTest extends AnyFunSuiteLike {
     assert(exception.getMessage.contains("0은 포함 될 수 없습니다."))
   }
 
+  test("입력값의 첫번째 자리를 알 수 있다.") {
+    val expected = "1"
+    val inputs = new UserInputs("123")
 
+    assert(inputs.firstValue == expected)
+  }
 }
