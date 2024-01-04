@@ -6,4 +6,8 @@ class UserInputs(val value: String) {
   require(!value.isBlank, "빈 문자열을 입력할 수 없습니다.")
   require(value.length == 3, "세 자리 숫자만 입력 가능합니다.")
   require(value.distinct.length == value.length, "중복된 숫자가 없어야 합니다.")
+  require(!value.contains("0"), "0은 포함 될 수 없습니다.")
+
+
+  val numbers: List[String] = value.map(_.toString).toList
 }

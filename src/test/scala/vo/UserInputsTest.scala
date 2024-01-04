@@ -4,8 +4,8 @@ import org.scalatest.funsuite.AnyFunSuiteLike
 
 class UserInputsTest extends AnyFunSuiteLike {
   test("생성자도 잘 몰라서 클래스 잘 생성됐는지 확인함") {
-    val inputValue = "333"
-    val expected = "333"
+    val inputValue = "123"
+    val expected = "123"
 
     val userInput = new UserInputs(inputValue)
     assert(userInput.value == expected)
@@ -58,6 +58,8 @@ class UserInputsTest extends AnyFunSuiteLike {
       new UserInputs(invalidValue)
     }
 
-    assert(exception.getMessage.contains("0이 포함된 경우 예외를 발생시킨다."))
+    assert(exception.getMessage.contains("0은 포함 될 수 없습니다."))
   }
+
+
 }
