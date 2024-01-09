@@ -14,12 +14,16 @@ class UserInputsTest extends AnyFunSuiteLike {
 
   val invalidCases = Table(
     ("invalidValue", "expectedException", "expectedMessage"),
-    (null, IllegalArgumentException, "값을 반드시 입력해야 합니다.")
+    (null, classOf[IllegalArgumentException], "값을 반드시 입력해야 합니다.")
   )
 
-  forEvery(invalidCases) { (input, expected) =>
-    test(s"adding 1 to $input should result in $expected") {
-      assert(input + 1 == expected)
+  forEvery(invalidCases) {(invalidValue, expectedException, expectedMessage) =>
+    test(s"유저가 잘못된 값을 입력했을 경우 예외를 발생시킨다.") {
+      val exception = intercept[IllegalArgumentException] {
+        new UserInputs(invalidValue)
+      }
+
+      assert(exception.getMessage.contains(expectedMessage))
     }
   }
 
