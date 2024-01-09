@@ -1,18 +1,11 @@
 package vo
 
 class UserInput(val inputValue: String) {
+  private val VAN_NUMBER = 0
+
   val value = Integer.parseInt(inputValue)
 
-
-  def getter(): Unit = {
-    return {
-      value1, value2, value3
-    }
-  }
-
-  def getUserInputValue(): Unit = {
-    return userInputValue
-  }
+  require(value != VAN_NUMBER, "0은 입력값이 될 수 없습니다.")
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[UserInput]
 

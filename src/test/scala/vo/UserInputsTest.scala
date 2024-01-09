@@ -58,7 +58,7 @@ class UserInputsTest extends AnyFunSuiteLike {
       new UserInputs(invalidValue)
     }
 
-    assert(exception.getMessage.contains("0은 포함 될 수 없습니다."))
+    assert(exception.getMessage.contains("0은 입력값이 될 수 없습니다."))
   }
 
   test("입력값의 첫번째 자리를 알 수 있다.") {
