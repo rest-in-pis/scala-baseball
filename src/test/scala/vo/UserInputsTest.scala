@@ -38,7 +38,7 @@ class UserInputsTest extends AnyFunSuiteLike {
       new UserInputs(invalidValue)
     }
 
-    assert(exception.getMessage.contains("세 자리 숫자만 입력 가능합니다."))
+    assert(exception.getMessage.contains("세 자리만 입력 가능합니다."))
   }
 
   test("자리수 별로 중복된 값이 있는 경우 예외를 발생시킨다.") {
@@ -61,10 +61,13 @@ class UserInputsTest extends AnyFunSuiteLike {
     assert(exception.getMessage.contains("0은 입력값이 될 수 없습니다."))
   }
 
-  test("입력값의 첫번째 자리를 알 수 있다.") {
-    val expected = new UserInput("1")
-    val inputs = new UserInputs("123")
+  test("숫자가 아닌 문자열 세자리 입력 시 예외를 발생시킨다.") {
+    val invalidValue = "a01"
 
-    assert(inputs.firstValue == expected)
+    val exception = intercept[IllegalArgumentException] {
+      new UserInputs(invalidValue)
+    }
+
+    assert(exception.getMessage.contains("숫자만 입력 가능합니다."))
   }
 }

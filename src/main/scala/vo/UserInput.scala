@@ -3,6 +3,8 @@ package vo
 class UserInput(val inputValue: String) {
   private val VAN_NUMBER = 0
 
+  if (Integer.parseInt(inputValue))
+
   val value = Integer.parseInt(inputValue)
 
   require(value != VAN_NUMBER, "0은 입력값이 될 수 없습니다.")
