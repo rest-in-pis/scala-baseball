@@ -1,6 +1,7 @@
 package vo
 
 import org.scalatest.funsuite.AnyFunSuiteLike
+import org.scalatest.prop.TableDrivenPropertyChecks._
 
 class UserInputsTest extends AnyFunSuiteLike {
   test("생성자도 잘 몰라서 클래스 잘 생성됐는지 확인함") {
@@ -9,6 +10,17 @@ class UserInputsTest extends AnyFunSuiteLike {
 
     val userInput = new UserInputs(inputValue)
     assert(userInput.value == expected)
+  }
+
+  val invalidCases = Table(
+    ("invalidValue", "expectedException", "expectedMessage"),
+    (null, IllegalArgumentException, "값을 반드시 입력해야 합니다.")
+  )
+
+  forEvery(invalidCases) { (input, expected) =>
+    test(s"adding 1 to $input should result in $expected") {
+      assert(input + 1 == expected)
+    }
   }
 
   test("유저입력값은 null일 수 없다.") {

@@ -1,9 +1,15 @@
 package vo
 
+import scala.util.control.Exception
+
 class UserInput(val inputValue: String) {
   private val VAN_NUMBER = 0
 
-  if (Integer.parseInt(inputValue))
+  try {
+    Integer.parseInt(inputValue)
+  } catch {
+    case e: Exception => throw new IllegalArgumentException("숫자만 입력 가능합니다.")
+  }
 
   val value = Integer.parseInt(inputValue)
 
