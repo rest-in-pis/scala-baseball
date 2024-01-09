@@ -14,57 +14,21 @@ class UserInputsTest extends AnyFunSuiteLike {
 
   val invalidCases = Table(
     ("invalidValue", "expectedException", "expectedMessage"),
-    (null, classOf[IllegalArgumentException], "값을 반드시 입력해야 합니다.")
+    (null, classOf[IllegalArgumentException], "값을 반드시 입력해야 합니다."),
+    ("       ", classOf[IllegalArgumentException], "빈 문자열을 입력할 수 없습니다."),
+    ("1234", classOf[IllegalArgumentException], "세 자리만 입력 가능합니다."),
+    ("332", classOf[IllegalArgumentException], "자리수 별로 중복된 값이 있는 경우 예외를 발생시킨다.")
   )
 
   forEvery(invalidCases) {(invalidValue, expectedException, expectedMessage) =>
-    test(s"유저가 잘못된 값을 입력했을 경우 예외를 발생시킨다.") {
-      val exception = intercept[IllegalArgumentException] {
+    test(s"$expectedMessage") {
+      val exception = intercept[Exception] {
         new UserInputs(invalidValue)
       }
 
+      assert(exception.getClass == expectedException)
       assert(exception.getMessage.contains(expectedMessage))
     }
-  }
-
-  test("유저입력값은 null일 수 없다.") {
-    val invalidValue = null
-
-    val exception = intercept[IllegalArgumentException] {
-      new UserInputs(invalidValue)
-    }
-
-    assert(exception.getMessage.contains("값을 반드시 입력해야 합니다."))
-  }
-
-  test("유저입력값은 빈 문자열일 수 없다.") {
-    val invalidValue = "       "
-
-    val exception = intercept[IllegalArgumentException] {
-      new UserInputs(invalidValue)
-    }
-
-    assert(exception.getMessage.contains("빈 문자열을 입력할 수 없습니다."))
-  }
-
-  test("유저입력값은 세 글자여야만 한다.") {
-    val invalidValue = "1234"
-
-    val exception = intercept[IllegalArgumentException] {
-      new UserInputs(invalidValue)
-    }
-
-    assert(exception.getMessage.contains("세 자리만 입력 가능합니다."))
-  }
-
-  test("자리수 별로 중복된 값이 있는 경우 예외를 발생시킨다.") {
-    val invalidValue = "332"
-
-    val exception = intercept[IllegalArgumentException] {
-      new UserInputs(invalidValue)
-    }
-
-    assert(exception.getMessage.contains("중복된 숫자가 없어야 합니다."))
   }
 
   test("0이 포함된 경우 예외를 발생시킨다.") {
